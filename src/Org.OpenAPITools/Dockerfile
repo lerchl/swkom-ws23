@@ -1,24 +1,23 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 # Container we use for final publish
-FROM mcr.microsoft.com/dotnet/core/aspnet:6.0-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
 # Build container
-FROM mcr.microsoft.com/dotnet/core/sdk:6.0-buster AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
 # Copy the code into the container
-WORKDIR /src
-COPY ["src/Org.OpenAPITools/Org.OpenAPITools.csproj", "Org.OpenAPITools/"]
+WORKDIR /app
+COPY ["Org.OpenAPITools.csproj", "."]
 
 # NuGet restore
-RUN dotnet restore "Org.OpenAPITools/Org.OpenAPITools.csproj"
-COPY ["src/Org.OpenAPITools/", "Org.OpenAPITools/"]
+RUN dotnet restore "Org.OpenAPITools.csproj"
+COPY [".", "."]
 
 # Build the API
-WORKDIR "Org.OpenAPITools"
 RUN dotnet build "Org.OpenAPITools.csproj" -c Release -o /app/build
 
 # Publish it
