@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -17,6 +17,12 @@ jobs:
       with:
         dotnet-version: 7.0.x
 
+  rest:
+    needs: setup
+    runs-on: ubuntu-latest
+    working-directory: ./rest
+
+    steps:
     - name: Restore dependencies
       run: dotnet restore
 
@@ -41,8 +47,6 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
       with:
-        context: .
-        file: ./Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
