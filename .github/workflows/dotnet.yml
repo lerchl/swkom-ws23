@@ -49,5 +49,4 @@ jobs:
       with:
         context: ${{ env.working-directory }}
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        tags: yustheyokai/swkom-ss23-rest:latest
