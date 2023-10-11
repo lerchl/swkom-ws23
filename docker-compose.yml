@@ -3,29 +3,9 @@ services:
   ui:
     image: yustheyokai/swkom-ss23-ui:latest
     ports:
-      - "8080:80"
-    networks:
-      - app-net
+      - "80:80"
 
   rest:
     image: yustheyokai/swkom-ss23-rest:latest
     ports:
-      - "8000:80"
-    networks:
-      - app-net
-
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - frontend
-      - backend
-    networks:
-      - app-net
-
-networks:
-  app-net:
-    driver: bridge
+      - "5000:80"
