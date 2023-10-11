@@ -72,4 +72,4 @@ jobs:
       with:
         context: ${{ env.working-directory }}
         push: true
-        tags: yustheyokai/swkom-ss23-rest:latest
+        tags: yustheyokai/swkom-ws23-rest:latest
