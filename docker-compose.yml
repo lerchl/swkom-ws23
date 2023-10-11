@@ -1,11 +1,11 @@
 version: '3'
 services:
   ui:
-    image: yustheyokai/swkom-ss23-ui:latest
+    image: yustheyokai/swkom-ws23-ui:latest
     ports:
       - "80:80"
 
   rest:
-    image: yustheyokai/swkom-ss23-rest:latest
+    image: yustheyokai/swkom-ws23-rest:latest
     ports:
       - "5000:80"
