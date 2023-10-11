@@ -37,7 +37,7 @@ jobs:
     env:
       working-directory: ./rest
     needs: rest
-    if: github.ref == "refs/heads/main"
+    if: github.ref == 'refs/heads/main'
 
     steps:
     - uses: actions/checkout@v3
