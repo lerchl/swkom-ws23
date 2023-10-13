@@ -1,5 +1,14 @@
 using Rest.Dal;
 
+using (var context = new PostgreContext()) {
+    try {
+        context.Database.EnsureCreated();
+    } catch (Exception e) {
+        Console.WriteLine(e.Message);
+        // _logger.Fatal(e.Message);
+    }
+}
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
