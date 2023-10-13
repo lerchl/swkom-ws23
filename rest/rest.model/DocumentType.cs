@@ -6,53 +6,54 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rest.Model {
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    [Table("document_type")]
     public partial class DocumentType : IEquatable<DocumentType> {
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name="id", EmitDefaultValue=true)]
+        [Column("id"), Key]
         public long Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Slug
         /// </summary>
-        [DataMember(Name="slug", EmitDefaultValue=true)]
+        [Column("slug"), MaxLength(255), Required]
         public string Slug { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=true)]
+        [Column("name"), MaxLength(100), Required]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Match
         /// </summary>
-        [DataMember(Name="match", EmitDefaultValue=true)]
+        [Column("match"), Required]
         public string Match { get; set; }
 
         /// <summary>
         /// Gets or Sets MatchingAlgorithm
         /// </summary>
-        [DataMember(Name="matching_algorithm", EmitDefaultValue=true)]
+        [Column("matching_algorithm"), Required]
         public long MatchingAlgorithm { get; set; }
 
         /// <summary>
         /// Gets or Sets IsInsensitive
         /// </summary>
-        [DataMember(Name="is_insensitive", EmitDefaultValue=true)]
+        [Column("is_insensitive"), Required]
         public bool IsInsensitive { get; set; }
 
         /// <summary>
         /// Gets or Sets DocumentCount
         /// </summary>
-        [DataMember(Name="document_count", EmitDefaultValue=true)]
+        [Column("document_count"), Required]
         public long DocumentCount { get; set; }
 
         /// <summary>

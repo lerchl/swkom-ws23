@@ -6,95 +6,97 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rest.Model {
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    [Table("document")]
     public partial class Document : IEquatable<Document> {
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name="id", EmitDefaultValue=true)]
+        [Column("id"), Key]
         public int Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Correspondent
         /// </summary>
-        [DataMember(Name="correspondent", EmitDefaultValue=true)]
+        [Column("correspondent"), Required, ForeignKey("Correspondent")]
         public int? Correspondent { get; set; }
 
         /// <summary>
         /// Gets or Sets DocumentType
         /// </summary>
-        [DataMember(Name="document_type", EmitDefaultValue=true)]
+        [Column("document_type"), Required]
         public int? DocumentType { get; set; }
 
         /// <summary>
         /// Gets or Sets StoragePath
         /// </summary>
-        [DataMember(Name="storage_path", EmitDefaultValue=true)]
+        [Column("storage_path"), Required]
         public int? StoragePath { get; set; }
 
         /// <summary>
         /// Gets or Sets Title
         /// </summary>
-        [DataMember(Name="title", EmitDefaultValue=true)]
+        [Column("title"), MaxLength(255), Required]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or Sets Content
         /// </summary>
-        [DataMember(Name="content", EmitDefaultValue=true)]
+        [Column("content"), Required]
         public string Content { get; set; }
 
         /// <summary>
         /// Gets or Sets Tags
         /// </summary>
-        [DataMember(Name="tags", EmitDefaultValue=true)]
+        /// TODO: List in EF
+        [Column("tags"), Required]
         public List<int> Tags { get; set; }
 
         /// <summary>
         /// Gets or Sets Created
         /// </summary>
-        [DataMember(Name="created", EmitDefaultValue=false)]
+        [Column("created"), Required]
         public DateTime Created { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedDate
         /// </summary>
-        [DataMember(Name="created_date", EmitDefaultValue=false)]
+        [Column("created_date"), Required]
         public DateTime CreatedDate { get; set; }
 
         /// <summary>
         /// Gets or Sets Modified
         /// </summary>
-        [DataMember(Name="modified", EmitDefaultValue=false)]
+        [Column("modified"), Required]
         public DateTime Modified { get; set; }
 
         /// <summary>
         /// Gets or Sets Added
         /// </summary>
-        [DataMember(Name="added", EmitDefaultValue=false)]
+        [Column("added"), Required]
         public DateTime Added { get; set; }
 
         /// <summary>
         /// Gets or Sets ArchiveSerialNumber
         /// </summary>
-        [DataMember(Name="archive_serial_number", EmitDefaultValue=true)]
+        [Column("archive_serial_number"), Required]
         public string ArchiveSerialNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets OriginalFileName
         /// </summary>
-        [DataMember(Name="original_file_name", EmitDefaultValue=true)]
+        [Column("original_file_name"), Required]
         public string OriginalFileName { get; set; }
 
         /// <summary>
         /// Gets or Sets ArchivedFileName
         /// </summary>
-        [DataMember(Name="archived_file_name", EmitDefaultValue=true)]
+        [Column("archived_file_name"), Required]
         public string ArchivedFileName { get; set; }
 
         /// <summary>

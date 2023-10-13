@@ -6,23 +6,24 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rest.Model {
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    [Table("user_info")]
     public partial class UserInfo : IEquatable<UserInfo> {
         /// <summary>
         /// Gets or Sets Username
         /// </summary>
-        [DataMember(Name="username", EmitDefaultValue=true)]
+        [Column("username"), Key]
         public string Username { get; set; }
 
         /// <summary>
         /// Gets or Sets Password
         /// </summary>
-        [DataMember(Name="password", EmitDefaultValue=true)]
+        [Column("password"), MaxLength(70), Required]
         public string Password { get; set; }
 
         /// <summary>

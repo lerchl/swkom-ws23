@@ -6,47 +6,48 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rest.Model {
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    [Table("new_tag")]
     public partial class NewTag : IEquatable<NewTag> {
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=true)]
+        [Column("name"), Key]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Color
         /// </summary>
-        [DataMember(Name="color", EmitDefaultValue=true)]
+        [Column("color"), Required]
         public string Color { get; set; }
 
         /// <summary>
         /// Gets or Sets Match
         /// </summary>
-        [DataMember(Name="match", EmitDefaultValue=true)]
+        [Column("match"), Required]
         public string Match { get; set; }
 
         /// <summary>
         /// Gets or Sets MatchingAlgorithm
         /// </summary>
-        [DataMember(Name="matching_algorithm", EmitDefaultValue=true)]
+        [Column("matching_algorithm"), Required]
         public long MatchingAlgorithm { get; set; }
 
         /// <summary>
         /// Gets or Sets IsInsensitive
         /// </summary>
-        [DataMember(Name="is_insensitive", EmitDefaultValue=true)]
+        [Column("is_insensitive"), Required]
         public bool IsInsensitive { get; set; }
 
         /// <summary>
         /// Gets or Sets IsInboxTag
         /// </summary>
-        [DataMember(Name="is_inbox_tag", EmitDefaultValue=true)]
+        [Column("is_inbox_tag"), Required]
         public bool IsInboxTag { get; set; }
 
         /// <summary>

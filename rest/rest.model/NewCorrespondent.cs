@@ -6,47 +6,48 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rest.Model {
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    [Table("new_correspondent")]
     public partial class NewCorrespondent : IEquatable<NewCorrespondent> {
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=true)]
+        [Column("name"), Key]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Match
         /// </summary>
-        [DataMember(Name="match", EmitDefaultValue=true)]
+        [Column("match"), Required]
         public string Match { get; set; }
 
         /// <summary>
         /// Gets or Sets MatchingAlgorithm
         /// </summary>
-        [DataMember(Name="matching_algorithm", EmitDefaultValue=true)]
+        [Column("matching_algorithm"), Required]
         public long MatchingAlgorithm { get; set; }
 
         /// <summary>
         /// Gets or Sets IsInsensitive
         /// </summary>
-        [DataMember(Name="is_insensitive", EmitDefaultValue=true)]
+        [Column("is_insensitive"), Required]
         public bool IsInsensitive { get; set; }
 
         /// <summary>
         /// Gets or Sets DocumentCount
         /// </summary>
-        [DataMember(Name="document_count", EmitDefaultValue=true)]
+        [Column("document_count"), Required]
         public long DocumentCount { get; set; }
 
         /// <summary>
         /// Gets or Sets LastCorrespondence
         /// </summary>
-        [DataMember(Name="last_correspondence", EmitDefaultValue=false)]
+        [Column("last_correspondence"), Required]
         public DateTime LastCorrespondence { get; set; }
 
         /// <summary>
