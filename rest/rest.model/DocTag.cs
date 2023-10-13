@@ -13,7 +13,7 @@ namespace Rest.Model {
     /// 
     /// </summary>
     [Table("doctag")]
-    public partial class DocTag : IEquatable<DocTag> {
+    public partial class DocTag : Entity, IEquatable<DocTag> {
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
@@ -200,8 +200,12 @@ namespace Rest.Model {
             }
         }
 
+        public override long GetId() {
+            return Id;
+        }
+
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(DocTag left, DocTag right)
         {

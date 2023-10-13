@@ -23,7 +23,7 @@ namespace Rest.Model {
     /// 
     /// </summary>
     [Table("correspondent")]
-    public partial class Correspondent : IEquatable<Correspondent> {
+    public partial class Correspondent : Entity, IEquatable<Correspondent> {
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
@@ -194,6 +194,10 @@ namespace Rest.Model {
                     hashCode = hashCode * 59 + LastCorrespondence.GetHashCode();
                 return hashCode;
             }
+        }
+
+        public override long GetId() {
+            return Id;
         }
 
         #region Operators

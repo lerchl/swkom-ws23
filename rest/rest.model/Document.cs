@@ -13,7 +13,7 @@ namespace Rest.Model {
     /// 
     /// </summary>
     [Table("document")]
-    public partial class Document : IEquatable<Document> {
+    public partial class Document : Entity, IEquatable<Document> {
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
@@ -23,19 +23,19 @@ namespace Rest.Model {
         /// <summary>
         /// Gets or Sets Correspondent
         /// </summary>
-        [Column("correspondent"), Required, ForeignKey("Correspondent")]
+        [Column("correspondent"), Required]
         public int? Correspondent { get; set; }
 
         /// <summary>
         /// Gets or Sets DocumentType
         /// </summary>
-        [Column("document_type"), Required]
+        [Column("document_type")]
         public int? DocumentType { get; set; }
 
         /// <summary>
         /// Gets or Sets StoragePath
         /// </summary>
-        [Column("storage_path"), Required]
+        [Column("storage_path")]
         public int? StoragePath { get; set; }
 
         /// <summary>
@@ -53,9 +53,8 @@ namespace Rest.Model {
         /// <summary>
         /// Gets or Sets Tags
         /// </summary>
-        /// TODO: List in EF
         [Column("tags"), Required]
-        public List<int> Tags { get; set; }
+        public List<DocTag> Tags { get; set; }
 
         /// <summary>
         /// Gets or Sets Created
@@ -272,8 +271,12 @@ namespace Rest.Model {
             }
         }
 
+        public override long GetId() {
+            return Id;
+        }
+
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(Document left, Document right)
         {

@@ -1,5 +1,5 @@
 {
     "ConnectionStrings": {
-        "PostgreContext": "Include Error Detail=True;Host=HOST;Database=DATABASE;Username=USERNAME;Password=PASSWORD"
+        "PostgreContext": "Include Error Detail=True;Host=localhost;Database=paperless;Username=postgres;Password=postgres"
     }
 }

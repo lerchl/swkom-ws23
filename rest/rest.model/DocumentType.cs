@@ -13,7 +13,7 @@ namespace Rest.Model {
     /// 
     /// </summary>
     [Table("document_type")]
-    public partial class DocumentType : IEquatable<DocumentType> {
+    public partial class DocumentType : Entity, IEquatable<DocumentType> {
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
@@ -172,8 +172,12 @@ namespace Rest.Model {
             }
         }
 
+        public override long GetId() {
+            return Id;
+        }
+
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(DocumentType left, DocumentType right)
         {

@@ -13,11 +13,16 @@ namespace Rest.Model {
     /// 
     /// </summary>
     [Table("user_info")]
-    public partial class UserInfo : IEquatable<UserInfo> {
+    public partial class UserInfo : Entity, IEquatable<UserInfo> {
+
+        [Column("id"), Key]
+        public long Id { get; set; }
+
+
         /// <summary>
         /// Gets or Sets Username
         /// </summary>
-        [Column("username"), Key]
+        [Column("username"), Required]
         public string Username { get; set; }
 
         /// <summary>
@@ -102,8 +107,12 @@ namespace Rest.Model {
             }
         }
 
+        public override long GetId() {
+            return Id;
+        }
+
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(UserInfo left, UserInfo right)
         {
