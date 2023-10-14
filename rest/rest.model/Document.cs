@@ -1,10 +1,5 @@
-using System;
-using System.Linq;
 using System.Text;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,14 +18,14 @@ namespace Rest.Model {
         /// <summary>
         /// Gets or Sets Correspondent
         /// </summary>
-        [Column("correspondent"), Required]
-        public int? Correspondent { get; set; }
+        [Column("correspondent"), ForeignKey("Correspondent")]
+        public Correspondent? Correspondent { get; set; }
 
         /// <summary>
         /// Gets or Sets DocumentType
         /// </summary>
-        [Column("document_type")]
-        public int? DocumentType { get; set; }
+        [Column("document_type"), ForeignKey("DocumentType")]
+        public DocumentType? DocumentType { get; set; }
 
         /// <summary>
         /// Gets or Sets StoragePath
