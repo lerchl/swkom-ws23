@@ -18,13 +18,13 @@ namespace Rest.Model {
         /// <summary>
         /// Gets or Sets Correspondent
         /// </summary>
-        [Column("correspondent"), ForeignKey("Correspondent")]
+        [Column("correspondent"), ForeignKey("Id")]
         public Correspondent? Correspondent { get; set; }
 
         /// <summary>
         /// Gets or Sets DocumentType
         /// </summary>
-        [Column("document_type"), ForeignKey("DocumentType")]
+        [Column("document_type"), ForeignKey("Id")]
         public DocumentType? DocumentType { get; set; }
 
         /// <summary>
