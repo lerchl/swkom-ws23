@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
 using Newtonsoft.Json;
 using Rest.Model;
 
@@ -15,7 +14,7 @@ namespace Rest.Web
         {
             throw new NotImplementedException();
         }
-        
+
         [HttpGet]
         [Route("/api/documents/{id}/download")]
         public virtual IActionResult DownloadDocument([FromRoute (Name = "id")][Required]int id, [FromQuery (Name = "original")]bool? original)

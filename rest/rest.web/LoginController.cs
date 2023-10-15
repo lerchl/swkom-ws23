@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
 using Rest.Model;
 
 namespace Rest.Web
