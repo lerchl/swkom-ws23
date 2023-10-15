@@ -8,7 +8,6 @@ namespace Rest.Web
     { 
         [HttpGet]
         [Route("/api/search/autocomplete")]
-        [SwaggerOperation("AutoComplete")]
         public virtual IActionResult AutoComplete([FromQuery (Name = "term")]string term, [FromQuery (Name = "limit")]int? limit)
         {
             throw new NotImplementedException();
