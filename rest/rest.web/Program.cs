@@ -1,6 +1,38 @@
+using Rest.Dal;
+
+using (var context = new PostgreContext()) {
+    try {
+        context.Database.EnsureCreated();
+    } catch (Exception e) {
+        Console.WriteLine(e.Message);
+        // _logger.Fatal(e.Message);
+    }
+}
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IDocumentRepository, DbDocumentRepository>();
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();

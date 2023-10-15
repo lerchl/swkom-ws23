@@ -1,28 +1,29 @@
-using System;
-using System.Linq;
 using System.Text;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rest.Model {
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
-    public partial class UserInfo : IEquatable<UserInfo> {
+    [Table("user_info")]
+    public partial class UserInfo : Entity, IEquatable<UserInfo> {
+
+        [Column("id"), Key]
+        public long Id { get; set; }
+
+
         /// <summary>
         /// Gets or Sets Username
         /// </summary>
-        [DataMember(Name="username", EmitDefaultValue=true)]
+        [Column("username"), Required]
         public string Username { get; set; }
 
         /// <summary>
         /// Gets or Sets Password
         /// </summary>
-        [DataMember(Name="password", EmitDefaultValue=true)]
+        [Column("password"), MaxLength(70), Required]
         public string Password { get; set; }
 
         /// <summary>
@@ -101,8 +102,12 @@ namespace Rest.Model {
             }
         }
 
+        public override long GetId() {
+            return Id;
+        }
+
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(UserInfo left, UserInfo right)
         {

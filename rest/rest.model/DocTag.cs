@@ -1,70 +1,66 @@
-using System;
-using System.Linq;
 using System.Text;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rest.Model {
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
-    public partial class DocTag : IEquatable<DocTag> {
+    [Table("doctag")]
+    public partial class DocTag : Entity, IEquatable<DocTag> {
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name="id", EmitDefaultValue=true)]
+        [Column("id"), Key]
         public long Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Slug
         /// </summary>
-        [DataMember(Name="slug", EmitDefaultValue=true)]
+        [Column("slug"), MaxLength(255), Required]
         public string Slug { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=true)]
+        [Column("name"), MaxLength(100), Required]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Color
         /// </summary>
-        [DataMember(Name="color", EmitDefaultValue=true)]
+        [Column("color"), MaxLength(20), Required]
         public string Color { get; set; }
 
         /// <summary>
         /// Gets or Sets Match
         /// </summary>
-        [DataMember(Name="match", EmitDefaultValue=true)]
+        [Column("match"), Required]
         public string Match { get; set; }
 
         /// <summary>
         /// Gets or Sets MatchingAlgorithm
         /// </summary>
-        [DataMember(Name="matching_algorithm", EmitDefaultValue=true)]
+        [Column("matching_algorithm"), Required]
         public long MatchingAlgorithm { get; set; }
 
         /// <summary>
         /// Gets or Sets IsInsensitive
         /// </summary>
-        [DataMember(Name="is_insensitive", EmitDefaultValue=true)]
+        [Column("is_insensitive"), Required]
         public bool IsInsensitive { get; set; }
 
         /// <summary>
         /// Gets or Sets IsInboxTag
         /// </summary>
-        [DataMember(Name="is_inbox_tag", EmitDefaultValue=true)]
+        [Column("is_inbox_tag"), Required]
         public bool IsInboxTag { get; set; }
 
         /// <summary>
         /// Gets or Sets DocumentCount
         /// </summary>
-        [DataMember(Name="document_count", EmitDefaultValue=true)]
+        [Column("document_count"), Required]
         public long DocumentCount { get; set; }
 
         /// <summary>
@@ -199,8 +195,12 @@ namespace Rest.Model {
             }
         }
 
+        public override long GetId() {
+            return Id;
+        }
+
         #region Operators
-        #pragma warning disable 1591
+#pragma warning disable 1591
 
         public static bool operator ==(DocTag left, DocTag right)
         {

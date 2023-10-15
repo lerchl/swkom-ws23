@@ -5,6 +5,6 @@ namespace Rest.Model {
     /// </summary>
     public abstract class Entity {
 
-        public abstract Guid GetGuid();
+        public abstract long GetId();
     }
 }
