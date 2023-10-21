@@ -18,6 +18,11 @@ namespace Rest.Web {
         public virtual string ApiGet() {
             return "Hello World!";
         }
+
+        [HttpGet]
+        [Route("/api/ui_settings")]
+        public virtual string UiSettings() {
+            return "{}";
+        }
     }
 }
-
