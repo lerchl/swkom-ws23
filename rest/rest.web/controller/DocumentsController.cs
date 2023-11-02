@@ -1,18 +1,31 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Rest.Logic.Service;
 using Rest.Model;
 
-namespace Rest.Web
+namespace Rest.Web.Controller
 { 
     [ApiController]
     public class DocumentsController : ControllerBase
-    { 
+    {
+        private readonly IDocumentService _service;
+
+        public DocumentsController(IDocumentService service)
+        {
+            _service = service;
+        }
+
+        // /////////////////////////////////////////////////////////////////////////
+        // Methods
+        // /////////////////////////////////////////////////////////////////////////
+
         [HttpDelete]
         [Route("/api/documents/{id}")]
-        public virtual IActionResult DeleteDocument([FromRoute (Name = "id")][Required]int id)
+        public virtual IActionResult DeleteDocument([FromRoute(Name = "id")][Required] int id)
         {
-            throw new NotImplementedException();
+            _service.Remove(id);
+            return NoContent();
         }
 
         [HttpGet]

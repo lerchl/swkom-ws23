@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Rest.Web
+namespace Rest.Web.Controller
 { 
     [ApiController]
     public class SearchController : ControllerBase

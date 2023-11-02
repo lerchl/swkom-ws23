@@ -3,38 +3,37 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Rest.Model;
 
-
-namespace Rest.Web
-{ 
+namespace Rest.Web.Controller
+{
     [ApiController]
-    public class DocumentTypesController : ControllerBase
+    public class CorrespondentsController : ControllerBase
     { 
         [HttpPost]
-        [Route("/api/document_types")]
+        [Route("/api/correspondents")]
         [Consumes("application/json", "text/json", "application/*+json")]
-        public virtual IActionResult CreateDocumentType([FromBody]DocumentType documentType)
+        public virtual IActionResult CreateCorrespondent([FromBody]Correspondent correspondent)
         {
             throw new NotImplementedException();
         }
 
         [HttpDelete]
-        [Route("/api/document_types/{id}")]
-        public virtual IActionResult DeleteDocumentType([FromRoute (Name = "id")][Required]int id)
+        [Route("/api/correspondents/{id}")]
+        public virtual IActionResult DeleteCorrespondent([FromRoute (Name = "id")][Required]int id)
         {
             throw new NotImplementedException();
         }
 
         [HttpGet]
-        [Route("/api/document_types")]
-        public virtual IActionResult GetDocumentTypes()
+        [Route("/api/correspondents")]
+        public virtual IActionResult GetCorrespondents()
         {
             throw new NotImplementedException();
         }
 
         [HttpPut]
-        [Route("/api/document_types/{id}")]
+        [Route("/api/correspondents/{id}")]
         [Consumes("application/json", "text/json", "application/*+json")]
-        public virtual IActionResult UpdateDocumentType([FromRoute (Name = "id")][Required]int id, [FromBody]DocumentType documentType)
+        public virtual IActionResult UpdateCorrespondent([FromRoute (Name = "id")][Required]int id, [FromBody]Correspondent correspondent)
         {
             throw new NotImplementedException();
         }

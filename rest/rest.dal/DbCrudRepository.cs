@@ -9,7 +9,7 @@ namespace Rest.Dal {
     /// <typeparam name="E">the <see cref="Entity"/> type</typeparam>
     /// <typeparam name="C">the <see cref="DbContext"/> type</typeparam>
     public abstract class DbCrudRepository<E, C> : ICrudRepository<E>
-            where E : Entity
+            where E : Entity, new()
             where C : DbContext, new() {
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Rest.Dal {
             return dbSet.ToList();
         }
 
-        public virtual E? GetById(Guid id) {
+        public virtual E? GetById(long id) {
             using var context = new C();
             return GetDbSet(context).Find(id);
         }

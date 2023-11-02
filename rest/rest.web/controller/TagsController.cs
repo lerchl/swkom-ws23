@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Rest.Model;
 
-namespace Rest.Web
+namespace Rest.Web.Controller
 { 
     [ApiController]
     public class TagsController : ControllerBase

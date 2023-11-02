@@ -18,7 +18,7 @@ namespace Rest.Dal {
         /// </summary>
         /// <param name="id">The id of the entity</param>
         /// <returns>The entity or <c>null</c> if it does not exist</returns>
-        public E? GetById(Guid id);
+        public E? GetById(long id);
 
         /// <summary>
         ///     Adds an entity to the database.

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\rest.model\rest.model.csproj" />
-    <ProjectReference Include="..\rest.dal\rest.dal.csproj" />
+    <ProjectReference Include="..\rest.logic\rest.logic.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
