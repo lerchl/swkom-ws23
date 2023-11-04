@@ -48,10 +48,10 @@ public class CrudService<E, R> : ICrudService<E> where E : Entity where R : ICru
 
     public virtual void Remove(long id)
     {
-        E? e = _repository.GetById(id);
+        E? e = GetById(id);
 
         if (e != null) {
-            _repository.Remove(e);
+            Remove(e);
         }
     }
 }
