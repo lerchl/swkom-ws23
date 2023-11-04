@@ -9,7 +9,7 @@ namespace Rest.Dal {
     /// <typeparam name="E">the <see cref="Entity"/> type</typeparam>
     /// <typeparam name="C">the <see cref="DbContext"/> type</typeparam>
     public abstract class DbCrudRepository<E, C> : ICrudRepository<E>
-            where E : Entity, new()
+            where E : Entity
             where C : DbContext, new() {
 
         /// <summary>
