@@ -12,6 +12,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Rest.Model {
     /// <summary>
@@ -19,52 +20,37 @@ namespace Rest.Model {
     /// </summary>
     [Table("correspondent")]
     public partial class Correspondent : Entity, IEquatable<Correspondent> {
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
+
         [Column("id"), Key]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Slug
-        /// </summary>
         [Column("slug"), MaxLength(255)]
-        public string Slug { get; set; }
+        [JsonPropertyName("slug")]
+        public string? Slug { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
         [Column("name"), MaxLength(100), Required]
-        public string Name { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = "";
 
-        /// <summary>
-        /// Gets or Sets Match
-        /// </summary>
-        [Column("match"), Required]
-        public string Match { get; set; }
+        [Column("match")]
+        [JsonPropertyName("match")]
+        public string? Match { get; set; }
 
-        /// <summary>
-        /// Gets or Sets MatchingAlgorithm
-        /// </summary>
         [Column("matching_algorithm"), Required]
+        [JsonPropertyName("matching_algorithm")]
         public long MatchingAlgorithm { get; set; }
 
-        /// <summary>
-        /// Gets or Sets IsInsensitive
-        /// </summary>
         [Column("is_insensitive"), Required]
+        [JsonPropertyName("is_insensitive")]
         public bool IsInsensitive { get; set; }
 
-        /// <summary>
-        /// Gets or Sets DocumentCount
-        /// </summary>
         [Column("document_count"), Required]
+        [JsonPropertyName("document_count")]
         public long DocumentCount { get; set; }
 
-        /// <summary>
-        /// Gets or Sets LastCorrespondence
-        /// </summary>
         [Column("last_correspondence"), Required]
+        [JsonPropertyName("last_correspondence")]
         public DateTime LastCorrespondence { get; set; }
 
         /// <summary>

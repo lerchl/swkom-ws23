@@ -5,6 +5,6 @@ Semester project for the lecture Software Components Systems in the fall semeste
 Running the project is as simple as running `docker compose up` in the root of the project. The docker compose will spin up all neccessary containers.
 
 ## Develop
-Spin up a container for the frontend with: `docker container run -p 4200:80 yustheyokai/swkom-ws23-ui`. The ui will now be running at port `4200`.
+We provide a docker compose file for development purposes. It will spin up a postgresql database and the ui on port 4200.
 
 To start the rest service, either run `dotnet run` in `rest/rest.web` or use your IDE's convinience features.

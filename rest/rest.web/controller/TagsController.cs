@@ -37,7 +37,8 @@ public class TagsController : ControllerBase
     [Route("/{id}")]
     public virtual IActionResult DeleteTag([FromRoute(Name = "id")][Required] int id)
     {
-        throw new NotImplementedException();
+        _service.Remove(id);
+        return NoContent();
     }
 
     [HttpGet]
@@ -51,6 +52,7 @@ public class TagsController : ControllerBase
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult UpdateTag([FromRoute(Name = "id")][Required] int id, [FromBody] DocTag docTag)
     {
-        throw new NotImplementedException();
+        docTag.Id = id;
+        return Ok(_service.Update(docTag));
     }
 }
