@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Rest.Model;
-using rest.Logging;
+using Rest.Logging;
 
 namespace Rest.Dal {
 
@@ -22,7 +22,7 @@ namespace Rest.Dal {
         // Implementations
         // /////////////////////////////////////////////////////////////////////////
 
-        private readonly ILogger _logger = (rest.Logging.ILogger)LoggerFactory.GetLogger();
+        private readonly ILogger _logger = (Rest.Logging.ILogger)LoggerFactory.GetLogger();
 
         public virtual List<E> GetAll() {
             _logger.Debug($"Getting all {typeof(E).Name}s...");

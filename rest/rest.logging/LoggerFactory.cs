@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using log4net.Core;
 
-namespace rest.Logging {
+namespace Rest.Logging {
     public class LoggerFactory {
 
         public static ILoggerWrapper GetLogger() {

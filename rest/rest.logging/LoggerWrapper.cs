@@ -1,6 +1,6 @@
 ﻿using log4net.Core;
 
-namespace rest.Logging {
+namespace Rest.Logging {
     public class LoggerWrapper : ILogger {
         private readonly log4net.ILog _log;
 
