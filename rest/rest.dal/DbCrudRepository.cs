@@ -28,7 +28,7 @@ namespace Rest.Dal {
             return dbSet.ToList();
         }
 
-        public virtual E? GetById(Guid id) {
+        public virtual E? GetById(long id) {
             using var context = new C();
             return GetDbSet(context).Find(id);
         }

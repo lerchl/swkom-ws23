@@ -2,65 +2,50 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
-namespace Rest.Model {
+namespace Rest.Model
+{
     /// <summary>
     /// 
     /// </summary>
-    [Table("doctag")]
-    public partial class DocTag : Entity, IEquatable<DocTag> {
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
+    [Table("doc_tag")]
+    public partial class DocTag : Entity, IEquatable<DocTag>
+    {
         [Column("id"), Key]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Slug
-        /// </summary>
-        [Column("slug"), MaxLength(255), Required]
-        public string Slug { get; set; }
+        [Column("slug"), MaxLength(255)]
+        [JsonPropertyName("slug")]
+        public string? Slug { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
         [Column("name"), MaxLength(100), Required]
-        public string Name { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = "";
 
-        /// <summary>
-        /// Gets or Sets Color
-        /// </summary>
         [Column("color"), MaxLength(20), Required]
-        public string Color { get; set; }
+        [JsonPropertyName("color")]
+        public string Color { get; set; } = "";
 
-        /// <summary>
-        /// Gets or Sets Match
-        /// </summary>
-        [Column("match"), Required]
-        public string Match { get; set; }
+        [Column("match")]
+        [JsonPropertyName("matching")]
+        public string? Match { get; set; }
 
-        /// <summary>
-        /// Gets or Sets MatchingAlgorithm
-        /// </summary>
         [Column("matching_algorithm"), Required]
+        [JsonPropertyName("matching_algorithm")]
         public long MatchingAlgorithm { get; set; }
 
-        /// <summary>
-        /// Gets or Sets IsInsensitive
-        /// </summary>
         [Column("is_insensitive"), Required]
+        [JsonPropertyName("is_insensitive")]
         public bool IsInsensitive { get; set; }
 
-        /// <summary>
-        /// Gets or Sets IsInboxTag
-        /// </summary>
         [Column("is_inbox_tag"), Required]
+        [JsonPropertyName("is_inbox_tag")]
         public bool IsInboxTag { get; set; }
 
-        /// <summary>
-        /// Gets or Sets DocumentCount
-        /// </summary>
         [Column("document_count"), Required]
+        [JsonPropertyName("document_count")]
         public long DocumentCount { get; set; }
 
         /// <summary>
@@ -115,50 +100,50 @@ namespace Rest.Model {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return 
+            return
                 (
                     Id == other.Id ||
-                    
+
                     Id.Equals(other.Id)
-                ) && 
+                ) &&
                 (
                     Slug == other.Slug ||
                     Slug != null &&
                     Slug.Equals(other.Slug)
-                ) && 
+                ) &&
                 (
                     Name == other.Name ||
                     Name != null &&
                     Name.Equals(other.Name)
-                ) && 
+                ) &&
                 (
                     Color == other.Color ||
                     Color != null &&
                     Color.Equals(other.Color)
-                ) && 
+                ) &&
                 (
                     Match == other.Match ||
                     Match != null &&
                     Match.Equals(other.Match)
-                ) && 
+                ) &&
                 (
                     MatchingAlgorithm == other.MatchingAlgorithm ||
-                    
+
                     MatchingAlgorithm.Equals(other.MatchingAlgorithm)
-                ) && 
+                ) &&
                 (
                     IsInsensitive == other.IsInsensitive ||
-                    
+
                     IsInsensitive.Equals(other.IsInsensitive)
-                ) && 
+                ) &&
                 (
                     IsInboxTag == other.IsInboxTag ||
-                    
+
                     IsInboxTag.Equals(other.IsInboxTag)
-                ) && 
+                ) &&
                 (
                     DocumentCount == other.DocumentCount ||
-                    
+
                     DocumentCount.Equals(other.DocumentCount)
                 );
         }
@@ -173,29 +158,30 @@ namespace Rest.Model {
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    
-                    hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (Slug != null)
+
+                hashCode = hashCode * 59 + Id.GetHashCode();
+                if (Slug != null)
                     hashCode = hashCode * 59 + Slug.GetHashCode();
-                    if (Name != null)
+                if (Name != null)
                     hashCode = hashCode * 59 + Name.GetHashCode();
-                    if (Color != null)
+                if (Color != null)
                     hashCode = hashCode * 59 + Color.GetHashCode();
-                    if (Match != null)
+                if (Match != null)
                     hashCode = hashCode * 59 + Match.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + MatchingAlgorithm.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + IsInsensitive.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + IsInboxTag.GetHashCode();
-                    
-                    hashCode = hashCode * 59 + DocumentCount.GetHashCode();
+
+                hashCode = hashCode * 59 + MatchingAlgorithm.GetHashCode();
+
+                hashCode = hashCode * 59 + IsInsensitive.GetHashCode();
+
+                hashCode = hashCode * 59 + IsInboxTag.GetHashCode();
+
+                hashCode = hashCode * 59 + DocumentCount.GetHashCode();
                 return hashCode;
             }
         }
 
-        public override long GetId() {
+        public override long GetId()
+        {
             return Id;
         }
 
@@ -212,7 +198,7 @@ namespace Rest.Model {
             return !Equals(left, right);
         }
 
-        #pragma warning restore 1591
+#pragma warning restore 1591
         #endregion Operators
     }
 }

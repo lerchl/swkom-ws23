@@ -28,7 +28,7 @@ namespace Rest.Model {
         /// <summary>
         /// Gets or Sets Slug
         /// </summary>
-        [Column("slug"), MaxLength(255), Required]
+        [Column("slug"), MaxLength(255)]
         public string Slug { get; set; }
 
         /// <summary>

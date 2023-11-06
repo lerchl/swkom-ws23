@@ -1,11 +1,11 @@
 using Rest.Model;
 
-namespace Rest.Dal;
+namespace Rest.Logic.Service;
 
 /// <summary>
-///     A repository for CRUD operations.
+///     A service for CRUD operations.
 /// </summary>
-public interface ICrudRepository<E> where E : Entity
+public interface ICrudService<E> where E : Entity
 {
 
     /// <summary>
@@ -40,4 +40,10 @@ public interface ICrudRepository<E> where E : Entity
     /// </summary>
     /// <param name="entity">The entity</param>
     public void Remove(E entity);
+
+    /// <summary>
+    ///    Removes an entity from the database.
+    /// </summary>
+    /// <param name="id">The id of the entity</param>
+    public void Remove(long id);
 }

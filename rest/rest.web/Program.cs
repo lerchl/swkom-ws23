@@ -1,7 +1,9 @@
 using Rest.Dal;
+using Rest.Logic.Service;
 
 using (var context = new PostgreContext()) {
     try {
+        context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
     } catch (Exception e) {
         Console.WriteLine(e.Message);
@@ -11,14 +13,29 @@ using (var context = new PostgreContext()) {
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddCors(options => {
+    options.AddDefaultPolicy(policy => {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Repositories
 builder.Services.AddSingleton<IDocumentRepository, DbDocumentRepository>();
+builder.Services.AddSingleton<IDocumentTypeRepository, DbDocumentTypeRepository>();
+builder.Services.AddSingleton<ICorrespondentRepository, DbCorrespondentRepository>();
+builder.Services.AddSingleton<IDocTagRepository, DbDocTagRepository>();
+
+// Services
+builder.Services.AddSingleton<IDocumentService, DocumentService>();
+builder.Services.AddSingleton<IDocumentTypeService, DocumentTypeService>();
+builder.Services.AddSingleton<ICorrespondentService, CorrespondentService>();
+builder.Services.AddSingleton<IDocTagService, DocTagService>();
 
 var app = builder.Build();
 
@@ -31,8 +48,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHttpLogging();
 
 app.Run();
