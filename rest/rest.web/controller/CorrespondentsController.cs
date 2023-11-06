@@ -7,6 +7,7 @@ using Rest.Model;
 namespace Rest.Web.Controller;
 
 [ApiController]
+[Route("/api/correspondents")]
 public class CorrespondentsController : ControllerBase
 {
     private readonly ICorrespondentService _service;
@@ -25,32 +26,33 @@ public class CorrespondentsController : ControllerBase
     // /////////////////////////////////////////////////////////////////////////
 
     [HttpPost]
-    [Route("/api/correspondents")]
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult CreateCorrespondent([FromBody] Correspondent correspondent)
     {
-        throw new NotImplementedException();
+        var newCorrespondent = _service.Add(correspondent);
+        return Created("/api/correspondents/" + newCorrespondent.Id, newCorrespondent);
     }
 
     [HttpDelete]
-    [Route("/api/correspondents/{id}")]
+    [Route("/{id}")]
     public virtual IActionResult DeleteCorrespondent([FromRoute(Name = "id")][Required] int id)
     {
-        throw new NotImplementedException();
+        _service.Remove(id);
+        return NoContent();
     }
 
     [HttpGet]
-    [Route("/api/correspondents")]
     public virtual IActionResult GetCorrespondents()
     {
         return Ok(_service.GetAll());
     }
 
     [HttpPut]
-    [Route("/api/correspondents/{id}")]
+    [Route("/{id}")]
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult UpdateCorrespondent([FromRoute(Name = "id")][Required] int id, [FromBody] Correspondent correspondent)
     {
-        throw new NotImplementedException();
+        correspondent.Id = id;
+        return Ok(_service.Update(correspondent));
     }
 }
