@@ -2,6 +2,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Rest.Model {
     /// <summary>
@@ -9,89 +10,62 @@ namespace Rest.Model {
     /// </summary>
     [Table("document")]
     public partial class Document : Entity, IEquatable<Document> {
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
+
         [Column("id"), Key]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Correspondent
-        /// </summary>
         [Column("correspondent")]
+        [JsonPropertyName("correspondent")]
         public Correspondent? Correspondent { get; set; }
 
-        /// <summary>
-        /// Gets or Sets DocumentType
-        /// </summary>
         [Column("document_type")]
+        [JsonPropertyName("document_type")]
         public DocumentType? DocumentType { get; set; }
 
-        /// <summary>
-        /// Gets or Sets StoragePath
-        /// </summary>
         [Column("storage_path")]
+        [JsonPropertyName("storage_path")]
         public int? StoragePath { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Title
-        /// </summary>
         [Column("title"), MaxLength(255), Required]
-        public string Title { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; } = "";
 
-        /// <summary>
-        /// Gets or Sets Content
-        /// </summary>
         [Column("content"), Required]
-        public string Content { get; set; }
+        [JsonPropertyName("content")]
+        public string Content { get; set; } = "";
 
-        /// <summary>
-        /// Gets or Sets Tags
-        /// </summary>
-        [Column("tags"), Required]
-        public List<DocTag> Tags { get; set; }
+        [Column("tags")]
+        [JsonPropertyName("tags")]
+        public List<DocTag> Tags { get; set; } = new();
 
-        /// <summary>
-        /// Gets or Sets Created
-        /// </summary>
         [Column("created"), Required]
+        [JsonPropertyName("created")]
         public DateTime Created { get; set; }
 
-        /// <summary>
-        /// Gets or Sets CreatedDate
-        /// </summary>
         [Column("created_date"), Required]
+        [JsonPropertyName("created_date")]
         public DateTime CreatedDate { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Modified
-        /// </summary>
         [Column("modified"), Required]
+        [JsonPropertyName("modified")]
         public DateTime Modified { get; set; }
 
-        /// <summary>
-        /// Gets or Sets Added
-        /// </summary>
         [Column("added"), Required]
+        [JsonPropertyName("added")]
         public DateTime Added { get; set; }
 
-        /// <summary>
-        /// Gets or Sets ArchiveSerialNumber
-        /// </summary>
         [Column("archive_serial_number"), Required]
-        public string ArchiveSerialNumber { get; set; }
+        [JsonPropertyName("archive_serial_number")]
+        public string ArchiveSerialNumber { get; set; } = "";
 
-        /// <summary>
-        /// Gets or Sets OriginalFileName
-        /// </summary>
         [Column("original_file_name"), Required]
-        public string OriginalFileName { get; set; }
+        [JsonPropertyName("original_file_name")]
+        public string OriginalFileName { get; set; } = "";
 
-        /// <summary>
-        /// Gets or Sets ArchivedFileName
-        /// </summary>
         [Column("archived_file_name"), Required]
-        public string ArchivedFileName { get; set; }
+        [JsonPropertyName("archived_file_name")]
+        public string ArchivedFileName { get; set; } = "";
 
         /// <summary>
         /// Returns the string presentation of the object
