@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rest.logic.test", "rest.log
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rest.logging", "rest.logging\rest.logging.csproj", "{438B70FC-DE46-4F84-A895-4196EC66002B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rest.rabbitmq", "rest.rabbitmq\rest.rabbitmq.csproj", "{8B73B99C-3BEB-4B33-9F0D-61536DABEC3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{D94A9109-B676-453C-83A9-999832C6ABCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D94A9109-B676-453C-83A9-999832C6ABCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D94A9109-B676-453C-83A9-999832C6ABCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B73B99C-3BEB-4B33-9F0D-61536DABEC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B73B99C-3BEB-4B33-9F0D-61536DABEC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B73B99C-3BEB-4B33-9F0D-61536DABEC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B73B99C-3BEB-4B33-9F0D-61536DABEC3F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{438B70FC-DE46-4F84-A895-4196EC66002B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{438B70FC-DE46-4F84-A895-4196EC66002B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438B70FC-DE46-4F84-A895-4196EC66002B}.Release|Any CPU.ActiveCfg = Release|Any CPU
