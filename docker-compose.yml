@@ -9,3 +9,12 @@ services:
     image: yustheyokai/swkom-ws23-rest:latest
     ports:
       - "5000:80"
+
+  db:
+    image: postgres:16.0
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"

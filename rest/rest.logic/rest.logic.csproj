@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\rest.model\rest.model.csproj" />
+    <ProjectReference Include="..\rest.dal\rest.dal.csproj" />
+  </ItemGroup>
 </Project>
