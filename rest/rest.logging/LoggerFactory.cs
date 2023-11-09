@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using log4net.Core;
 
 namespace Rest.Logging {
     public class LoggerFactory {
