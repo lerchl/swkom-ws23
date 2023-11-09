@@ -12,7 +12,6 @@ namespace Rest.Web {
                     context.Database.EnsureCreated();
                 }
                 catch (Exception e) {
-                    Console.WriteLine(e.Message);
                     _logger.Fatal(e.Message);
                 }
             }
