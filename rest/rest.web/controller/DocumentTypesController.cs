@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using Rest.Logic.Service;
 using Rest.Model;
 
-
 namespace Rest.Web.Controller;
 
 [ApiController]
@@ -31,14 +30,15 @@ public class DocumentTypesController : ControllerBase
     public virtual IActionResult CreateDocumentType([FromBody] DocumentType documentType)
     {
         var newDocumentType = _service.Add(documentType);
-        return Created("/api/tags/" + documentType.Id, documentType);
+        return Created("/api/document_types/" + newDocumentType.Id, newDocumentType);
     }
 
     [HttpDelete]
     [Route("/{id}")]
     public virtual IActionResult DeleteDocumentType([FromRoute(Name = "id")][Required] int id)
     {
-        throw new NotImplementedException();
+        _service.Remove(id);
+        return NoContent();
     }
 
     [HttpGet]
@@ -52,6 +52,7 @@ public class DocumentTypesController : ControllerBase
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult UpdateDocumentType([FromRoute(Name = "id")][Required] int id, [FromBody] DocumentType documentType)
     {
-        throw new NotImplementedException();
+        documentType.Id = id;
+        return Ok(_service.Update(documentType));
     }
 }

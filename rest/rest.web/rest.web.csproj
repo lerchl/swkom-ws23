@@ -8,10 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\rest.logging\rest.logging.csproj" />
     <ProjectReference Include="..\rest.model\rest.model.csproj" />
     <ProjectReference Include="..\rest.logic\rest.logic.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
+
+  <ItemGroup>
+		<None Update="Log4Net.config">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>
