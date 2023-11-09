@@ -1,4 +1,4 @@
-﻿namespace rest.logic.validation {
+﻿namespace Rest.Logic.Validation {
     /// <summary>
     ///     Interface for a validator.
     /// </summary>

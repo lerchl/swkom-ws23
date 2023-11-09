@@ -1,4 +1,4 @@
-﻿namespace rest.logic.validation {
+﻿namespace Rest.Logic.Validation {
     public class ValidationMessage {
 
         public ValidationMessageStatus Status { get; }

@@ -1,6 +1,6 @@
-﻿using static rest.logic.validation.ValidationMessageStatus;
+﻿using static Rest.Logic.Validation.ValidationMessageStatus;
 
-namespace rest.logic.validation {
+namespace Rest.Logic.Validation {
     public static class ValidationUtils {
 
         // strings

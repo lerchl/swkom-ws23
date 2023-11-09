@@ -1,4 +1,4 @@
-﻿namespace rest.logic.validation {
+﻿namespace Rest.Logic.Validation {
     /// <summary>
     ///     Result of a validation.
     /// </summary>

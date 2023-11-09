@@ -1,4 +1,4 @@
-﻿namespace rest.logic.validation {
+﻿namespace Rest.Logic.Validation {
     /// <summary>
     ///     Status of a validation message.
     ///     See also: <see cref="ValidationMessage"/>.

@@ -1,13 +1,12 @@
 ﻿using Rest.Model;
 
-using static rest.logic.validation.ValidationUtils;
+using static Rest.Logic.Validation.ValidationUtils;
 
-namespace rest.logic.validation {
+namespace Rest.Logic.Validation {
+    
     /// <summary>
     ///     <see cref="IValidator{T}"/> implementation for <see cref="Correspondent"/>s.
     /// </summary>
-    /// 
-    
     public class CorrespondentValidator : IValidator<Correspondent> {
         public ValidationResult ValidateSave(Correspondent t) {
             var result = new ValidationResult();

@@ -1,12 +1,15 @@
 using Rest.Dal;
+using Rest.Logic.Validation;
 using Rest.Model;
+
 
 namespace Rest.Logic.Service;
 
-public class CrudService<E, R> : ICrudService<E> where E : Entity where R : ICrudRepository<E>
+public class CrudService<E, R, V> : ICrudService<E> where E : Entity where R : ICrudRepository<E> where V : IValidator<E>
 {
 
     protected readonly R _repository;
+    protected readonly V _validator;
 
     // /////////////////////////////////////////////////////////////////////////
     // Init
@@ -33,11 +36,23 @@ public class CrudService<E, R> : ICrudService<E> where E : Entity where R : ICru
 
     public virtual E Add(E entity)
     {
+        var result = _validator.ValidateSave(entity);
+        
+        if (!result.Valid) {
+            throw new ValidationException(result);
+        }
+
         return _repository.Add(entity);
     }
 
     public virtual E Update(E entity)
     {
+        var result = _validator.ValidateSave(entity);
+
+        if (!result.Valid) {
+            throw new ValidationException(result);
+        }
+        
         return _repository.Update(entity);
     }
 

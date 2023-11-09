@@ -1,4 +1,4 @@
-﻿namespace rest.logic.validation {
+﻿namespace Rest.Logic.Validation {
     /// <summary>
     ///     Exception thrown when a validation fails.
     /// </summary>

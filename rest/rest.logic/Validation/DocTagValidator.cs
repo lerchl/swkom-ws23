@@ -1,13 +1,12 @@
 ﻿using Rest.Model;
 
-using static rest.logic.validation.ValidationUtils;
+using static Rest.Logic.Validation.ValidationUtils;
 
-namespace rest.logic.validation {
+namespace Rest.Logic.Validation {
+    
     /// <summary>
     ///     <see cref="IValidator{T}"/> implementation for <see cref="DocTag"/>s.
     /// </summary>
-    /// 
-
     public class DocTagValidator : IValidator<DocTag> {
         public ValidationResult ValidateSave(DocTag t) {
             var result = new ValidationResult();
@@ -16,12 +15,10 @@ namespace rest.logic.validation {
             ValidateMaxLength(t.Slug, 255, "Slug", result);
 
             // Name
-            ValidateRequired(t.Name, "Name", result);
-            ValidateMaxLength(t.Name, 100, "Name", result);
+            ValidateRequiredString(t.Name, 1, 100, "Name", result);
 
             // Color
-            ValidateRequired(t.Color, "Color", result);
-            ValidateMaxLength(t.Color, 20, "Color", result);
+            ValidateRequiredString(t.Color, 1, 20, "Color", result);
 
             // MatchingAlgorithm
             ValidateRequired(t.MatchingAlgorithm, "MatchingAlgorithm", result);

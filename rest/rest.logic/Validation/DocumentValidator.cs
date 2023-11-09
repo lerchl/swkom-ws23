@@ -1,13 +1,13 @@
 ﻿using Rest.Model;
 
-using static rest.logic.validation.ValidationUtils;
+using static Rest.Logic.Validation.ValidationUtils;
 
-namespace rest.logic.validation {
+namespace Rest.Logic.Validation {
+    
     /// <summary>
     ///     <see cref="IValidator{T}"/> implementation for <see cref="Document"/>s.
     /// </summary>
     /// 
-    
     public class DocumentValidator : IValidator<Document> {
         public ValidationResult ValidateSave(Document t) {
             var result = new ValidationResult();
