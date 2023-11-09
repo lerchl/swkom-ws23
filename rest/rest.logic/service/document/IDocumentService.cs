@@ -1,3 +1,4 @@
+using Rest.Logic.Service;
 using Rest.Model;
 
 namespace Rest.Logic.Service;

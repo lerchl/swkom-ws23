@@ -1,3 +1,4 @@
+using Rest.Logic.Service;
 using Rest.Dal;
 using Rest.Logic.Service;
 
