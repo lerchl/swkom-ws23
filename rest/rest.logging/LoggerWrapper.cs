@@ -1,7 +1,7 @@
 ﻿using log4net.Core;
 
 namespace Rest.Logging {
-    public class LoggerWrapper : ILogger {
+    public class LoggerWrapper : IPaperlessLogger {
         private readonly log4net.ILog _log;
 
         public static LoggerWrapper CreateLogger(string configPath, string caller) {

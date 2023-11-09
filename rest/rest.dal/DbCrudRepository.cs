@@ -22,7 +22,7 @@ namespace Rest.Dal {
         // Implementations
         // /////////////////////////////////////////////////////////////////////////
 
-        private readonly ILogger _logger = (Rest.Logging.ILogger)LoggerFactory.GetLogger();
+        private readonly IPaperlessLogger _logger = (Rest.Logging.IPaperlessLogger)PaperlessLoggerFactory.GetLogger();
 
         public virtual List<E> GetAll() {
             _logger.Debug($"Getting all {typeof(E).Name}s...");

@@ -4,7 +4,7 @@ using Rest.Logging;
 
 namespace Rest.Web {
     public class RestApplication {
-        private static readonly Rest.Logging.ILogger _logger = (Rest.Logging.ILogger)Rest.Logging.LoggerFactory.GetLogger();
+        private static readonly IPaperlessLogger _logger = PaperlessLoggerFactory.GetLogger();
         public static void Main(string[] args) {
             using (var context = new PostgreContext()) {
                 try {
