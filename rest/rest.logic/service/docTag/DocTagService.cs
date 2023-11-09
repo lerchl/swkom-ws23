@@ -6,7 +6,7 @@ namespace Rest.Logic.Service;
 
 public class DocTagService : CrudService<DocTag, IDocTagRepository, DocTagValidator>, IDocTagService
 {
-    public DocTagService(IDocTagRepository repository) : base(repository)
+    public DocTagService(IDocTagRepository repository) : base(repository, new DocTagValidator())
     {
         // noop
     }

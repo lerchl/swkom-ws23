@@ -6,7 +6,7 @@ namespace Rest.Logic.Service;
 
 public class CorrespondentService : CrudService<Correspondent, ICorrespondentRepository, CorrespondentValidator>, ICorrespondentService
 {
-    public CorrespondentService(ICorrespondentRepository repository) : base(repository)
+    public CorrespondentService(ICorrespondentRepository repository) : base(repository, new CorrespondentValidator())
     {
         // noop
     }

@@ -15,9 +15,10 @@ public class CrudService<E, R, V> : ICrudService<E> where E : Entity where R : I
     // Init
     // /////////////////////////////////////////////////////////////////////////
 
-    public CrudService(R repository)
+    public CrudService(R repository, V validator)
     {
         _repository = repository;
+        _validator = validator;
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -37,7 +38,7 @@ public class CrudService<E, R, V> : ICrudService<E> where E : Entity where R : I
     public virtual E Add(E entity)
     {
         var result = _validator.ValidateSave(entity);
-        
+
         if (!result.Valid) {
             throw new ValidationException(result);
         }
@@ -52,7 +53,7 @@ public class CrudService<E, R, V> : ICrudService<E> where E : Entity where R : I
         if (!result.Valid) {
             throw new ValidationException(result);
         }
-        
+
         return _repository.Update(entity);
     }
 
