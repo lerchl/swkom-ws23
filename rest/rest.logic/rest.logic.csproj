@@ -1,13 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\rest.model\rest.model.csproj" />
-    <ProjectReference Include="..\rest.dal\rest.dal.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\rest.model\rest.model.csproj" />
+        <ProjectReference Include="..\rest.dal\rest.dal.csproj" />
+
+        <PackageReference Include="EasyNetQ" Version="7.6.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    </ItemGroup>
 </Project>

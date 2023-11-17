@@ -43,6 +43,8 @@ namespace Rest.Web {
             builder.Services.AddSingleton<ICorrespondentService, CorrespondentService>();
             builder.Services.AddSingleton<IDocTagService, DocTagService>();
 
+            builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
