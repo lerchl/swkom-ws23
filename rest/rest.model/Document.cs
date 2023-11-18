@@ -41,19 +41,19 @@ namespace Rest.Model {
 
         [Column("created"), Required]
         [JsonPropertyName("created")]
-        public DateTime Created { get; set; }
+        public DateTime Created { get; set; } = DateTime.UtcNow;
 
         [Column("created_date"), Required]
         [JsonPropertyName("created_date")]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
         [Column("modified"), Required]
         [JsonPropertyName("modified")]
-        public DateTime Modified { get; set; }
+        public DateTime Modified { get; set; } = DateTime.UtcNow;
 
         [Column("added"), Required]
         [JsonPropertyName("added")]
-        public DateTime Added { get; set; }
+        public DateTime Added { get; set; } = DateTime.UtcNow;
 
         [Column("archive_serial_number"), Required]
         [JsonPropertyName("archive_serial_number")]

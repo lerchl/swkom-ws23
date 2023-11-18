@@ -7,7 +7,6 @@ using Rest.Model;
 namespace Rest.Web.Controller;
 
 [ApiController]
-[Route("/api/document_types")]
 public class DocumentTypesController : ControllerBase
 {
     private readonly IDocumentTypeService _service;
@@ -26,6 +25,7 @@ public class DocumentTypesController : ControllerBase
     // /////////////////////////////////////////////////////////////////////////
 
     [HttpPost]
+    [Route("/api/document_types")]
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult CreateDocumentType([FromBody] DocumentType documentType)
     {
@@ -34,7 +34,7 @@ public class DocumentTypesController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("/{id}")]
+    [Route("/api/document_types/{id}")]
     public virtual IActionResult DeleteDocumentType([FromRoute(Name = "id")][Required] int id)
     {
         _service.Remove(id);
@@ -42,13 +42,14 @@ public class DocumentTypesController : ControllerBase
     }
 
     [HttpGet]
+    [Route("/api/document_types")]
     public virtual IActionResult GetDocumentTypes()
     {
         return Ok(_service.GetAll());
     }
 
     [HttpPut]
-    [Route("/{id}")]
+    [Route("/api/document_types/{id}")]
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult UpdateDocumentType([FromRoute(Name = "id")][Required] int id, [FromBody] DocumentType documentType)
     {
