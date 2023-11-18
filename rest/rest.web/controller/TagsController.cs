@@ -7,7 +7,6 @@ using Rest.Model;
 namespace Rest.Web.Controller;
 
 [ApiController]
-[Route("/api/tags")]
 public class TagsController : ControllerBase
 {
     private readonly IDocTagService _service;
@@ -26,6 +25,7 @@ public class TagsController : ControllerBase
     // /////////////////////////////////////////////////////////////////////////
 
     [HttpPost]
+    [Route("/api/tags")]
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult CreateTag([FromBody] DocTag docTag)
     {
@@ -34,7 +34,7 @@ public class TagsController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("/{id}")]
+    [Route("/api/tags/{id}")]
     public virtual IActionResult DeleteTag([FromRoute(Name = "id")][Required] int id)
     {
         _service.Remove(id);
@@ -42,13 +42,14 @@ public class TagsController : ControllerBase
     }
 
     [HttpGet]
+    [Route("/api/tags")]
     public virtual IActionResult GetTags()
     {
         return Ok(_service.GetAll());
     }
 
     [HttpPut]
-    [Route("/{id}")]
+    [Route("/api/tags/{id}")]
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult UpdateTag([FromRoute(Name = "id")][Required] int id, [FromBody] DocTag docTag)
     {
