@@ -7,7 +7,6 @@ using Rest.Model;
 namespace Rest.Web.Controller;
 
 [ApiController]
-[Route("/api/correspondents")]
 public class CorrespondentsController : ControllerBase
 {
     private readonly ICorrespondentService _service;
@@ -26,6 +25,7 @@ public class CorrespondentsController : ControllerBase
     // /////////////////////////////////////////////////////////////////////////
 
     [HttpPost]
+    [Route("/api/correspondents")]
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult CreateCorrespondent([FromBody] Correspondent correspondent)
     {
@@ -34,7 +34,7 @@ public class CorrespondentsController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("/{id}")]
+    [Route("/api/correspondents/{id}")]
     public virtual IActionResult DeleteCorrespondent([FromRoute(Name = "id")][Required] int id)
     {
         _service.Remove(id);
@@ -42,13 +42,14 @@ public class CorrespondentsController : ControllerBase
     }
 
     [HttpGet]
+    [Route("/api/correspondents")]
     public virtual IActionResult GetCorrespondents()
     {
         return Ok(_service.GetAll());
     }
 
     [HttpPut]
-    [Route("/{id}")]
+    [Route("/api/correspondents/{id}")]
     [Consumes("application/json", "text/json", "application/*+json")]
     public virtual IActionResult UpdateCorrespondent([FromRoute(Name = "id")][Required] int id, [FromBody] Correspondent correspondent)
     {

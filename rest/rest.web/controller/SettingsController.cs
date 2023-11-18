@@ -4,6 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace Mock_Server.Controllers;
 
 [ApiController]
+[Route("/api/tasks")]
+public class TasksController : ControllerBase {
+    [HttpGet]
+    public IActionResult GetTasks() {
+        return Ok(new string[] { });
+    }
+}
+
+[ApiController]
 [Route("/api/storage_paths/")]
 public partial class StoragePathsController : ControllerBase
 {
