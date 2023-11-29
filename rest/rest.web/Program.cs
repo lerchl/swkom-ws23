@@ -2,6 +2,7 @@ using Rest.Logic.Service;
 using Rest.Dal;
 using Rest.Logic.Service;
 using Rest.Logging;
+using Minio;
 
 namespace Rest.Web {
     public class RestApplication {
@@ -16,6 +17,9 @@ namespace Rest.Web {
                     _logger.Fatal(e.Message);
                 }
             }
+            
+            var minio_accessKey = "minio";
+            var minio_secretKey = "minio123";
 
             var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +28,8 @@ namespace Rest.Web {
                     policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
+
+            builder.Services.AddMinio(minio_accessKey, minio_secretKey);
 
             // Add services to the container.
             builder.Services.AddControllers();
