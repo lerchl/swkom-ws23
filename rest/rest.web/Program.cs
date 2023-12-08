@@ -1,6 +1,5 @@
 using Rest.Logic.Service;
 using Rest.Dal;
-using Rest.Logic.Service;
 using Rest.Logging;
 
 namespace Rest.Web {
@@ -44,6 +43,7 @@ namespace Rest.Web {
             builder.Services.AddSingleton<IDocTagService, DocTagService>();
 
             builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
+            builder.Services.AddSingleton<IElasticSearchService, ElasticSearchService>();
 
             var app = builder.Build();
 
