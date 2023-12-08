@@ -1,10 +1,6 @@
-﻿using Minio;
+﻿using Rest.Model;
 
-namespace Rest.Logic.Service.Minio;
-public interface IMinioService<E> where E : Entity {
-    /// <summary>
-    ///     Upload a file
-    /// </summary>
-    /// <returns>Task</returns>
-    public Task UploadFileAsync(string bucketName, string objectName, string filePath, string contentType = "application/octet-stream");
+namespace Rest.Logic.Service;
+public interface IMinioService {
+    void AddDocument(long documentId, string filePath);
 }

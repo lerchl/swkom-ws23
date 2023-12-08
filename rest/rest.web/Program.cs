@@ -1,6 +1,5 @@
 using Rest.Logic.Service;
 using Rest.Dal;
-using Rest.Logic.Service;
 using Rest.Logging;
 using Minio;
 
@@ -50,6 +49,7 @@ namespace Rest.Web {
             builder.Services.AddSingleton<IDocTagService, DocTagService>();
 
             builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
+            builder.Services.AddSingleton<IMinioService, MinioService>();
 
             var app = builder.Build();
 
