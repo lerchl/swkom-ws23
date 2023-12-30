@@ -2,5 +2,5 @@
 
 namespace Rest.Logic.Service;
 public interface IMinioService {
-    void AddDocument(long documentId, string filePath);
+    Task AddDocument(long documentId, string filePath);
 }

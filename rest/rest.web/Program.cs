@@ -17,8 +17,8 @@ namespace Rest.Web {
                 }
             }
             
-            var minio_accessKey = "minio";
-            var minio_secretKey = "minio123";
+            string minio_accessKey = "minio";
+            string minio_secretKey = "minio123";
 
             var builder = WebApplication.CreateBuilder(args);
 
