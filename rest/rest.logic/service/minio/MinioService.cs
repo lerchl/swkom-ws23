@@ -13,7 +13,13 @@ namespace Rest.Logic.Service {
             .Build();
 
         public MinioService() {
-            minioClient = (MinioClient)new MinioClient().WithEndpoint(CONFIG.GetChildren).WithCredentials(accessKey, secretKey);
+            var minio_endpoint = CONFIG.GetSection("Minio").GetSection("endpoint").Value;
+            var minio_accesskey = CONFIG.GetSection("Minio").GetSection("accesskey").Value;
+            var minio_secretkey = CONFIG.GetSection("Minio").GetSection("secretkey").Value;
+            Console.WriteLine($"Minio endpoint: {minio_endpoint}");
+            Console.WriteLine($"Minio accesskey: {minio_accesskey}");
+            Console.WriteLine($"Minio secretkey: {minio_secretkey}");
+            minioClient = (MinioClient)new MinioClient().WithEndpoint(minio_endpoint).WithCredentials(minio_accesskey, minio_secretkey);
         }
 
 
