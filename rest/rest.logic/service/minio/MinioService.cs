@@ -26,10 +26,10 @@ namespace Rest.Logic.Service {
         public async Task AddDocument(long documentId, string filePath) {
             try {
                 // Ensure that the bucket exists, create it if not
-                bool bucketExists = minioClient.BucketExistsAsync(BUCKET_EXISTS).GetAwaiter().GetResult();
+                bool bucketExists = await minioClient.BucketExistsAsync(BUCKET_EXISTS);
                 
                 if (!bucketExists) {
-                    minioClient.MakeBucketAsync(BUCKET_CREATE).GetAwaiter().GetResult();
+                    await minioClient.MakeBucketAsync(BUCKET_CREATE);
                 }
 
                 // Build the file from filepath to a stream
