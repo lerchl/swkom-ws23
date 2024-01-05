@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Minio;
+using Minio.DataModel;
 using Minio.DataModel.Args;
 
 namespace Rest.Logic.Service {
@@ -26,6 +27,12 @@ namespace Rest.Logic.Service {
         public async Task AddDocument(long documentId, string filePath) {
             try {
                 // Ensure that the bucket exists, create it if not
+                var list = await minioClient.ListBucketsAsync();
+                
+                foreach (Bucket bucket in list.Buckets) {
+                    Console.WriteLine(bucket.Name + " " + bucket.CreationDateDateTime);
+                }
+
                 bool bucketExists = await minioClient.BucketExistsAsync(BUCKET_EXISTS);
                 
                 if (!bucketExists) {
@@ -36,11 +43,9 @@ namespace Rest.Logic.Service {
                 FileStream fs = File.Open(filePath, FileMode.Open);
 
                 // Upload the document to Minio
-                // TODO: Change filename to real filename instead of placeholder
-                PutObjectArgs OBJECT_ARGS = new PutObjectArgs().WithFileName("test.pdf").WithStreamData(fs);
+                PutObjectArgs OBJECT_ARGS = new PutObjectArgs().WithFileName(Path.GetFileName(filePath)).WithStreamData(fs);
                 await minioClient.PutObjectAsync(OBJECT_ARGS);
-
-                // If you've reached here, the document has been successfully added to Minio
+                
                 Console.WriteLine($"Document with ID {documentId} added to Minio bucket.");
             } catch (Exception ex) {
                 // Handle exceptions appropriately (logging, throwing, etc.)

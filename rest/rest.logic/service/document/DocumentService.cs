@@ -10,7 +10,7 @@ public class DocumentService : CrudService<Document, IDocumentRepository, Docume
     private readonly IRabbitMqService _rabbitMqService;
     private readonly IMinioService _minioService;
 
-    public DocumentService(IDocumentRepository repository, IRabbitMqService rabbitMqService, IMinioService minioService) : base(repository, new DocumentValidator())
+    public DocumentService(IDocumentRepository repository, IRabbitMqService rabbitMqService, MinioService minioService) : base(repository, new DocumentValidator())
     {
         _rabbitMqService = rabbitMqService;
         _minioService = minioService;

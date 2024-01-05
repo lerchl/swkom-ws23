@@ -6,6 +6,11 @@ using Minio;
 namespace Rest.Web {
     public class RestApplication {
         private static readonly IPaperlessLogger _logger = PaperlessLoggerFactory.GetLogger();
+        
+        private static readonly IConfiguration CONFIG = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", false, true)
+            .Build();
+        
         public static void Main(string[] args) {
             using (var context = new PostgreContext()) {
                 try {
@@ -16,9 +21,6 @@ namespace Rest.Web {
                     _logger.Fatal(e.Message);
                 }
             }
-            
-            string minio_accessKey = "minio";
-            string minio_secretKey = "minio123";
 
             var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +30,10 @@ namespace Rest.Web {
                 });
             });
 
-            builder.Services.AddMinio(minio_accessKey, minio_secretKey);
+            var minio_accesskey = CONFIG.GetSection("Minio").GetSection("accesskey").Value;
+            var minio_secretkey = CONFIG.GetSection("Minio").GetSection("secretkey").Value;
+
+            builder.Services.AddMinio(minio_accesskey, minio_secretkey);
 
             // Add services to the container.
             builder.Services.AddControllers();
