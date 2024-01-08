@@ -21,7 +21,7 @@ public class DocumentService : CrudService<Document, IDocumentRepository, Docume
         var document = base.Add(entity);
 
         _rabbitMqService.SendDocumentMessage(document.Id);
-        _minioService.AddDocument(document.Id, document.OriginalFileName);
+        _minioService.AddDocument(document.Id, document.FileStream!, document.Title);
 
         return document;
     }

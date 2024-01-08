@@ -67,6 +67,9 @@ namespace Rest.Model {
         [JsonPropertyName("archived_file_name")]
         public string ArchivedFileName { get; set; } = "";
 
+        [NotMapped]
+        public Stream? FileStream { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
