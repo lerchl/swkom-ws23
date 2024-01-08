@@ -44,6 +44,7 @@ namespace Rest.Web {
 
             builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
             builder.Services.AddSingleton<IElasticSearchService, ElasticSearchService>();
+            builder.Services.AddSingleton<IElasticSearchIndexService, ElasticSearchIndexService>();
 
             var app = builder.Build();
 

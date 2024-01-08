@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Rest.Logic.Service;
 
-public class ElasticSearchService : IElasticSearchService
+public class ElasticSearchIndexService : IElasticSearchIndexService
 {
     private static readonly IConfiguration CONFIG = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", false, true)
@@ -15,7 +15,7 @@ public class ElasticSearchService : IElasticSearchService
 
     private readonly ElasticClient _client;
 
-    public ElasticSearchService()
+    public ElasticSearchIndexService()
     {
         var settings = new ConnectionSettings(new Uri(CONFIG.GetSection("ElasticSearch:Node").Value!))
             .ServerCertificateValidationCallback((o, certificate, chain, errors) => true)
@@ -34,25 +34,5 @@ public class ElasticSearchService : IElasticSearchService
             // Handle the error.
             throw new Exception($"Failed to index document: {response.OriginalException.Message}");
         }
-    }
-
-    public async Task<IEnumerable<T>> SearchAsync<T>(string indexName, string query) where T : class
-    {
-        var response = await _client.SearchAsync<T>(s => s
-            .Index(indexName)
-            .Query(q => q
-                .QueryString(d => d
-                    .Query(query)
-                )
-            )
-        );
-
-        if (!response.IsValid)
-        {
-            // Handle the error.
-            throw new Exception($"Search failed: {response.OriginalException.Message}");
-        }
-
-        return response.Documents;
     }
 }
