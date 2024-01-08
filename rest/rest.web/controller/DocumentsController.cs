@@ -78,7 +78,7 @@ public class DocumentsController : ControllerBase
     public virtual IActionResult UploadDocument([FromForm] IEnumerable<IFormFile> document) {
         var documentFormFile = document.First();
 
-        var d = new Document { Title = documentFormFile.FileName };
+        var d = new Document { Title = documentFormFile.FileName, FileStream = documentFormFile.OpenReadStream() };
         d = _service.Add(d);
 
         return Created("/api/documents/" + d.Id, d);

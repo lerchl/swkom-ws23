@@ -1,11 +1,16 @@
 using Rest.Logic.Service;
 using Rest.Dal;
-using Rest.Logic.Service;
 using Rest.Logging;
+using Minio;
 
 namespace Rest.Web {
     public class RestApplication {
         private static readonly IPaperlessLogger _logger = PaperlessLoggerFactory.GetLogger();
+        
+        private static readonly IConfiguration CONFIG = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", false, true)
+            .Build();
+        
         public static void Main(string[] args) {
             using (var context = new PostgreContext()) {
                 try {
@@ -24,6 +29,11 @@ namespace Rest.Web {
                     policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
+
+            var minio_accesskey = CONFIG.GetSection("Minio").GetSection("accesskey").Value;
+            var minio_secretkey = CONFIG.GetSection("Minio").GetSection("secretkey").Value;
+            
+            builder.Services.AddMinio(minio_accesskey, minio_secretkey);
 
             // Add services to the container.
             builder.Services.AddControllers();
@@ -44,6 +54,7 @@ namespace Rest.Web {
             builder.Services.AddSingleton<IDocTagService, DocTagService>();
 
             builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
+            builder.Services.AddSingleton<IMinioService, MinioService>();
 
             var app = builder.Build();
 

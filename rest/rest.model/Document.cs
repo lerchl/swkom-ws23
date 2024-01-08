@@ -71,6 +71,8 @@ namespace Rest.Model {
         [JsonPropertyName("ocr_text")]
         public string OcrText { get; set; } = "";
 
+        [NotMapped]
+        public Stream? FileStream { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
