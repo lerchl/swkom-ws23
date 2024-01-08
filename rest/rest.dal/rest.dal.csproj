@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\rest.logging\rest.logging.csproj" />
     <ProjectReference Include="..\rest.model\rest.model.csproj" />
+    <PackageReference Include="Minio" Version="6.0.1" />
 
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />

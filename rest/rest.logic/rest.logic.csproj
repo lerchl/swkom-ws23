@@ -6,6 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Minio" Version="6.0.1" />
+  </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\rest.model\rest.model.csproj" />
         <ProjectReference Include="..\rest.dal\rest.dal.csproj" />
