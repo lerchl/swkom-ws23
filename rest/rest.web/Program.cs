@@ -32,7 +32,7 @@ namespace Rest.Web {
 
             var minio_accesskey = CONFIG.GetSection("Minio").GetSection("accesskey").Value;
             var minio_secretkey = CONFIG.GetSection("Minio").GetSection("secretkey").Value;
-
+            
             builder.Services.AddMinio(minio_accesskey, minio_secretkey);
 
             // Add services to the container.
