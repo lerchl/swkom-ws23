@@ -14,6 +14,7 @@ public class Program
 
     private static readonly OcrClient ocrClient = new();
     private static readonly MinioService minioService = new();
+    private static readonly ElasticSearchIndexService _elasticSearchIndexService = new();
 
     public static void Main(String[] args)
     {
@@ -34,7 +35,7 @@ public class Program
         {
             // send document to OCR
             var ocrResult = ocrClient.OcrPdf(stream);
-
+            _elasticSearchIndexService.IndexDocumentAsync(id, ocrResult);
             // write text into database
             using (var db = new PostgreContext())
             {

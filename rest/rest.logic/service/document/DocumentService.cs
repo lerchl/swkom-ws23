@@ -23,8 +23,6 @@ public class DocumentService : CrudService<Document, IDocumentRepository, Docume
         var document = base.Add(entity);
 
         _rabbitMqService.SendDocumentMessage(document.Id);
-        _elasticSearchIndexService.IndexDocumentAsync("documents", document);
-        
         _minioService.AddDocument(document.Id, document.FileStream!);
 
 

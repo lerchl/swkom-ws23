@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Nest;
 using Microsoft.Extensions.Configuration;
 
-namespace Rest.Logic.Service;
+namespace Service;
 
-public class ElasticSearchIndexService : IElasticSearchIndexService
+public class ElasticSearchIndexService
 {
     private static readonly IConfiguration CONFIG = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json", false, true)
