@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using JsonIgnoreAttribute = System.Text.Json.Serialization.JsonIgnoreAttribute;
 
 namespace Rest.Model {
     /// <summary>
@@ -72,6 +73,7 @@ namespace Rest.Model {
         public string OcrText { get; set; } = "";
 
         [NotMapped]
+        [JsonIgnore]
         public Stream? FileStream { get; set; }
 
         /// <summary>
