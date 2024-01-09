@@ -24,7 +24,7 @@ namespace Rest.Logic.Service {
         }
 
 
-        public async Task AddDocument(long documentId, Stream fileStream, string fileName) {
+        public async Task AddDocument(long documentId, Stream fileStream) {
             try {
                 // Ensure that the bucket exists, create it if not
                 var list = await minioClient.ListBucketsAsync();
@@ -42,7 +42,7 @@ namespace Rest.Logic.Service {
                 // Upload the document to Minio
                 PutObjectArgs OBJECT_ARGS = new PutObjectArgs()
                         .WithBucket("paperless")
-                        .WithObject(fileName)
+                        .WithObject(documentId.ToString())
                         .WithObjectSize(fileStream.Length)
                         .WithContentType("application/pdf")
                         .WithStreamData(fileStream);
