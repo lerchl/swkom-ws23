@@ -11,8 +11,10 @@ namespace Service
         [Column("id"), Key]
         public long Id { get; set; }
 
-        [Column("ocr_text")]
-        public string Text { get; set; } = "";
+        [Column("title"), MaxLength(255), Required]
+        public string Title { get; set; } = "";
+
+        [Column("ocr_text"), Required]
+        public string OcrText { get; set; } = "";
     }
 }
-

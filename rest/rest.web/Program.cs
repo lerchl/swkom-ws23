@@ -54,12 +54,8 @@ namespace Rest.Web {
             builder.Services.AddSingleton<IDocTagService, DocTagService>();
 
             builder.Services.AddSingleton<IRabbitMqService, RabbitMqService>();
-
             builder.Services.AddSingleton<IMinioService, MinioService>();
-            
             builder.Services.AddSingleton<IElasticSearchService, ElasticSearchService>();
-            builder.Services.AddSingleton<IElasticSearchIndexService, ElasticSearchIndexService>();
-
 
 
             var app = builder.Build();

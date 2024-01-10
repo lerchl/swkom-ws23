@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Nest;
+using Elasticsearch.Net;
 using Microsoft.Extensions.Configuration;
+using Nest;
 
 namespace Service;
 
@@ -19,19 +16,19 @@ public class ElasticSearchIndexService
     {
         var settings = new ConnectionSettings(new Uri(CONFIG.GetSection("ElasticSearch:Node").Value!))
             .ServerCertificateValidationCallback((o, certificate, chain, errors) => true)
-            .DefaultIndex("default_index")
+            .DefaultIndex("documents")
             .BasicAuthentication("elastic", "password");
 
         _client = new ElasticClient(settings);
     }
 
-    public async Task IndexDocumentAsync<T>(string indexName, T document) where T : class
+    public async Task IndexDocumentAsync<T>(Document document) where T : class
     {
-        var response = await _client.IndexDocumentAsync(document);
+        var response = await _client.IndexAsync(document, idx => idx.Index("documents").Id(document.Id).Refresh(Refresh.WaitFor));
 
         if (!response.IsValid)
         {
-            // Handle the error.
+            // Handle the error
             throw new Exception($"Failed to index document: {response.OriginalException.Message}");
         }
     }

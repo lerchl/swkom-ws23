@@ -22,7 +22,8 @@ public class Program
         {
             bus.Advanced.Consume<long>(bus.Advanced.QueueDeclare("document_queue"), (message, info) => ProcessMessage(message.Body));
 
-            for (;;) {
+            for (; ; )
+            {
                 // hihi
             }
         }
@@ -31,17 +32,17 @@ public class Program
     private static void ProcessMessage(long id)
     {
         // get document from MinIO
-        minioService.streamDocument(id, stream =>
+        minioService.streamDocument(id, async stream =>
         {
             // send document to OCR
             var ocrResult = ocrClient.OcrPdf(stream);
-            _elasticSearchIndexService.IndexDocumentAsync(id, ocrResult);
             // write text into database
             using (var db = new PostgreContext())
             {
                 var document = db.Documents.Find(id)!;
-                document.Text = ocrResult;
+                document.OcrText = ocrResult;
                 db.SaveChanges();
+                await _elasticSearchIndexService.IndexDocumentAsync<Document>(document);
             }
         });
     }

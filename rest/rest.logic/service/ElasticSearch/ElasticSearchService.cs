@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nest;
 using Microsoft.Extensions.Configuration;
+using Rest.Model;
 
 namespace Rest.Logic.Service;
 
@@ -25,27 +26,12 @@ public class ElasticSearchService : IElasticSearchService
         _client = new ElasticClient(settings);
     }
 
-    public async Task IndexDocumentAsync<T>(string indexName, T document) where T : class
+    public async Task<IEnumerable<Document>> SearchAsync(string indexName, string query)
     {
-        var response = await _client.IndexDocumentAsync(document);
-
-        if (!response.IsValid)
-        {
-            // Handle the error.
-            throw new Exception($"Failed to index document: {response.OriginalException.Message}");
-        }
-    }
-
-    public async Task<IEnumerable<T>> SearchAsync<T>(string indexName, string query) where T : class
-    {
-        var response = await _client.SearchAsync<T>(s => s
-            .Index(indexName)
-            .Query(q => q
-                .QueryString(d => d
-                    .Query(query)
-                )
-            )
-        );
+        var response = await _client.SearchAsync<Document>(s => s.Index(indexName).Query(q =>
+                q.Match(m => m.Field(f => f.OcrText).Query(query))
+                        || q.Match(m => m.Field(f => f.Title).Query(query))
+        ));
 
         if (!response.IsValid)
         {

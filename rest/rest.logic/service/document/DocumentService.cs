@@ -9,13 +9,11 @@ public class DocumentService : CrudService<Document, IDocumentRepository, Docume
 {
     private readonly IRabbitMqService _rabbitMqService;
     private readonly IMinioService _minioService;
-    private readonly IElasticSearchIndexService _elasticSearchIndexService;
 
-    public DocumentService(IDocumentRepository repository, IRabbitMqService rabbitMqService, IMinioService minioService, IElasticSearchIndexService elasticSearchIndexService) : base(repository, new DocumentValidator())
+    public DocumentService(IDocumentRepository repository, IRabbitMqService rabbitMqService, IMinioService minioService) : base(repository, new DocumentValidator())
     {
         _rabbitMqService = rabbitMqService;
         _minioService = minioService;
-        _elasticSearchIndexService = elasticSearchIndexService;
     }
 
     public override Document Add(Document entity)
