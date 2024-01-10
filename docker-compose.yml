@@ -4,14 +4,21 @@ services:
     image: yustheyokai/swkom-ws23-ui:latest
     ports:
       - "80:80"
+    depends_on:
+      - rest
 
   rest:
     image: yustheyokai/swkom-ws23-rest:latest
     ports:
       - "5000:80"
+    depends_on:
+      - db
 
   service:
     image: yustheyokai/swkom-ws23-service:latest
+    depends_on:
+      - db
+      - rabbitmq
 
   db:
     image: postgres:16.0
