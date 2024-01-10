@@ -10,6 +10,9 @@ services:
     ports:
       - "5000:80"
 
+  service:
+    image: yustheyokai/swkom-ws23-service:latest
+
   db:
     image: postgres:16.0
     environment:
@@ -18,3 +21,52 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+
+  rabbitmq:
+    image: rabbitmq:3.12.8-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+
+  elastic_search:
+    image: elasticsearch:8.11.3
+    environment:
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+      - "xpack.security.enrollment.enabled=false"
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    volumes:
+      - ${HOME}/minio/data:/data
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    command: server /data --console-address :9090
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/minio/login"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  minio-s3-bucket:
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set minio http://minio:9000 minio minio123 &&
+      /usr/bin/mc mb minio/paperless"
